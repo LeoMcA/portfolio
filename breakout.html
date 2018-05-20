@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+  <head>
+    <title>mcardle.io</title>
+    <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:200,400,600" rel="stylesheet">
+    <link href="assets/stylesheets/normalize.css" rel="stylesheet">
+    <link href="assets/stylesheets/style.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="header">
+        <h1>portfolio / breakout</h1>
+        <div class="short-description">a breakout clone created in c, using an arduino as a controller and ncurses to draw the game on screen</div>
+        <div class="wrapper-16by9">
+          <iframe src="https://www.youtube-nocookie.com/embed/FtQ3F7vpyic?rel=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+      </div>
+      <div class="sidebar">
+        <span class="label">languages</span>
+        <ul class="value">
+          <li>C</li>
+        </ul>
+        <span class="label">frameworks</span>
+        <ul class="value">
+          <li>arduino</li>
+          <li>ncurses</li>
+        </ul>
+        <span class="label">type</span>
+        <span class="value">university project</span>
+        <span class="label">license</span>
+        <span class="value">mit</span>
+        <!-- <span class="label">source code</span> -->
+      </div>
+      <div class="content">
+        <p>
+          Wikipedia has <a href="https://en.wikipedia.org/wiki/Breakout_(video_game)#Gameplay">comprehensive documentation</a> of the original.
+        </p>
+        <p>
+          This clone implements a subset of its gameplay. Most importantly:
+        </p>
+        <ul>
+          <li>You have 3 lives to destroy 8 rows of bricks with a ball</li>
+          <li>The potentiometer attached to the Ardiuno controls the paddle</li>
+          <li>The paddle can be used to deflect the ball back towards the bricks</li>
+          <li>If the ball touches the bottom of the play area then you lose a life</li>
+        </ul>
+        <p>
+          There are extra rules concerning when the ball speeds up, how many points you get for destroying bricks, and what happens when the ball hits the top of the screen. Those can be worked out by extensively playing the game, or reading the source code.
+        </p>
+      </div>
+    </div>
+  </body>
+</html>
