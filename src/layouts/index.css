@@ -1,0 +1,88 @@
+@import '../../node_modules/normalize.css';
+
+body {
+  font-family: "Source Code Pro", monospace;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 1.7em;
+  color: #890067;
+  text-transform: lowercase;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+  font-size: inherit;
+  margin: 1.7em 0;
+}
+
+p, ul {
+  margin: 1.7em 0;
+}
+
+p:first-child, ul:first-child {
+  margin-top: 0;
+}
+
+a, .title-link:hover {
+  text-decoration: none;
+  color: inherit;
+  border-bottom: dotted 1px #22f;
+}
+
+.title-link {
+  border-bottom: none;
+}
+
+.wrapper-16by9 {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 0;
+  overflow: hidden;
+  margin: 1.7em 0;
+}
+
+.wrapper-16by9::before {
+  display: block;
+  content: "";
+  padding-top: 56.25%;
+}
+
+.wrapper-16by9 iframe {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.content ul {
+  list-style: none;
+  padding-left: 2ch;
+}
+
+.content li::before {
+  content: "*";
+  margin-left: -2ch;
+  padding-right: 1ch;
+}
+
+.sidebar .label {
+  font-weight: 200;
+  text-align: right;
+}
+
+.sidebar ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sidebar li {
+  display: inline;
+}
+
+.sidebar li:not(:last-child)::after {
+  content: ', ';
+}
