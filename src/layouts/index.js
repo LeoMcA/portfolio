@@ -5,6 +5,7 @@ import Link from 'gatsby-link'
 
 import { prettyPath } from '../util/title-from-slug'
 
+import 'typeface-source-code-pro'
 import './index.css'
 
 const Layout = ({ children, location }) => (
