@@ -1,5 +1,9 @@
 @import '../../node_modules/normalize.css';
 
+html {
+  overflow-y: scroll;
+}
+
 body {
   font-family: "Source Code Pro", monospace;
   font-weight: 400;
