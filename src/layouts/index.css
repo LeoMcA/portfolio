@@ -7,6 +7,8 @@ body {
   line-height: 1.7em;
   color: #890067;
   text-transform: lowercase;
+  box-shadow: 0 -20px #890067, 0 -40px #560041, 0 -60px #23001A;
+  margin-top: 60px;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -33,6 +35,18 @@ a, .title-link:hover {
   border-bottom: none;
 }
 
+.project {
+  display: grid;
+  grid-template-rows: max-content max-content;
+  grid-template-columns: 2fr 1fr;
+  grid-column-gap: 1ch;
+  column-gap: 1ch;
+}
+
+.header {
+  grid-column: 1 / span 2;
+}
+
 .content ul {
   list-style: none;
   padding-left: 2ch;
@@ -42,6 +56,11 @@ a, .title-link:hover {
   content: "*";
   margin-left: -2ch;
   padding-right: 1ch;
+}
+
+.sidebar {
+  grid-row: 2;
+  grid-column: 2;
 }
 
 .sidebar .label {
@@ -61,4 +80,29 @@ a, .title-link:hover {
 
 .sidebar li:not(:last-child)::after {
   content: ', ';
+}
+
+@media only screen and (max-width: 992px) {
+  body {
+    font-size: 16px;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .project {
+    grid-template-columns: auto;
+  }
+
+  .header {
+    grid-column: 1;
+  }
+
+  .sidebar {
+    grid-column: 1;
+    margin-bottom: 1.7em;
+  }
+
+  .sidebar .label {
+    text-align: left;
+  }
 }

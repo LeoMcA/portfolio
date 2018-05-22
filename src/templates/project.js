@@ -14,13 +14,7 @@ export default ({ data }) => {
     .filter(k => project.frontmatter[k] && !excluded_from_sidebar.includes(k))
     .reduce((o, k) => (o[k] = project.frontmatter[k], o), {})
   return (
-    <div style={{
-      display: 'grid',
-      gridTemplateRows: 'max-content max-content',
-      gridTemplateColumns: '2fr 1fr',
-      gridColumnGap: '1ch',
-      columnGap: '1ch',
-    }} >
+    <div className='project'>
       <Header project={project} />
       <Sidebar sidebar_data={sidebar_data} />
       <div className='content' dangerouslySetInnerHTML={{ __html: project.html }} />

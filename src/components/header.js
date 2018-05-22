@@ -6,9 +6,7 @@ import RatioBox from './ratio-box.js'
 export default ({ project }) => {
   const frontmatter = project.frontmatter
   return (
-    <div style={{
-      gridColumn: '1 / span 2',
-    }}>
+    <div className='header'>
       <div style={{
         marginBottom: '1.7em',
         fontWeight: '200',

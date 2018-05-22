@@ -9,10 +9,10 @@ import './index.css'
 
 const Layout = ({ children, location }) => (
   <div style={{
-    marginTop: '60px',
     padding: '0 2ch',
-    boxShadow: '0 -20px #890067, 0 -40px #560041, 0 -60px #23001A',
     display: 'grid',
+    maxWidth: '90ch',
+    margin: '0 auto',
   }}>
     <Helmet
       title={
