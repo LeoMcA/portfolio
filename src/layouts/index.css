@@ -33,30 +33,6 @@ a, .title-link:hover {
   border-bottom: none;
 }
 
-.wrapper-16by9 {
-  position: relative;
-  display: block;
-  width: 100%;
-  padding: 0;
-  overflow: hidden;
-  margin: 1.7em 0;
-}
-
-.wrapper-16by9::before {
-  display: block;
-  content: "";
-  padding-top: 56.25%;
-}
-
-.wrapper-16by9 iframe {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
-
 .content ul {
   list-style: none;
   padding-left: 2ch;

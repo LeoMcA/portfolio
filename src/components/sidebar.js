@@ -2,16 +2,16 @@ import React from 'react'
 
 import Value from './sidebar-value'
 
-export default ({ frontmatter }) => (
+export default ({ sidebar_data }) => (
   <div style={{
     gridRow: '2',
     gridColumn: '2',
   }} className='sidebar'>
     <div style={{ display: 'table' }}>
-      {Object.keys(frontmatter).filter(k => frontmatter[k] && !['description', 'image'].includes(k)).map(k =>
+      {Object.keys(sidebar_data).map(k =>
         <div style={{ display:'table-row' }} key={k}>
           <span style={{ display:'table-cell', paddingRight: '1ch' }} className='label'>{k}</span>
-          <Value label={k} value={frontmatter[k]} />
+          <Value label={k} value={sidebar_data[k]} />
         </div>
       )}
     </div>
