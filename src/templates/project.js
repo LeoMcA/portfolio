@@ -21,7 +21,7 @@ export default ({ data }) => {
       gridColumnGap: '1ch',
       columnGap: '1ch',
     }} >
-      <Header frontmatter={project.frontmatter} />
+      <Header project={project} />
       <Sidebar sidebar_data={sidebar_data} />
       <div className='content' dangerouslySetInnerHTML={{ __html: project.html }} />
     </div>
@@ -32,6 +32,7 @@ export const query = graphql`
   query ProjectQuery($slug: String!) {
     markdownRemark(fields: { slug: { eq: $slug } }) {
       html
+      transparentPng
       frontmatter {
         description
         video {
