@@ -1,4 +1,5 @@
 import React from 'react'
+import Link from 'gatsby-link'
 
 export default ({ label, value }) => {
   switch (true) {
@@ -12,7 +13,13 @@ export default ({ label, value }) => {
       return (
         <ul style={{ display:'table-cell' }}>
           {value.map(item =>
-            <li key={item}>{item}</li>
+            <li key={item}>
+            {/^(languages)$/.test(label) ?
+              <Link to={`/languages/${item}`}>{item}</Link>
+            :
+              item
+            }
+            </li>
           )}
         </ul>
       )

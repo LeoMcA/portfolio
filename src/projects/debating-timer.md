@@ -3,6 +3,7 @@ description: "simple timekeeping app to be used on a whiteboard during debates"
 demo: "http://debti.me"
 languages:
  - "javascript"
+ - "html"
 frameworks:
  - "angular"
  - "bootstrap"

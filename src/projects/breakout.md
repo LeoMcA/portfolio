@@ -11,7 +11,7 @@ video:
   poster: "./assets/breakout.png"
 ratio: "16:9"
 languages:
- - "C"
+ - "c"
 frameworks:
  - "arduino"
  - "ncurses"

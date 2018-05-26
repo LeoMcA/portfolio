@@ -29,13 +29,13 @@ p:first-child, ul:first-child {
   margin-top: 0;
 }
 
-a, .title-link:hover {
+a, .title a:hover {
   text-decoration: none;
   color: inherit;
   border-bottom: dotted 1px #22f;
 }
 
-.title-link {
+.title a {
   border-bottom: none;
 }
 

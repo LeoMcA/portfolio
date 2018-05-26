@@ -29,6 +29,9 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
         allMarkdownRemark {
           edges {
             node {
+              frontmatter {
+                languages
+              }
               fields {
                 slug
               }
@@ -37,7 +40,11 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
         }
       }
     `).then(result => {
+      var languages = new Set()
       result.data.allMarkdownRemark.edges.forEach(({ node }) => {
+        if (node.frontmatter.languages) {
+          node.frontmatter.languages.forEach(lang => languages.add(lang))
+        }
         createPage({
           path: node.fields.slug,
           component: path.resolve('./src/templates/project.js'),
@@ -46,6 +53,22 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
             slug: node.fields.slug,
           },
         })
+      })
+      languages.forEach(lang => {
+        createPage({
+          path: `/languages/${lang}`,
+          component: path.resolve('./src/templates/language.js'),
+          context: {
+            lang: lang
+          },
+        })
+      })
+      createPage({
+        path: `/languages`,
+        component: path.resolve('./src/templates/languages.js'),
+        context: {
+          languages: [...languages]
+        },
       })
       resolve()
     })

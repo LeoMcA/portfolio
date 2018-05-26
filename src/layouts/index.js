@@ -20,11 +20,20 @@ const Layout = ({ children, location }) => (
         'portfolio.mcardle.io / ' + prettyPath(location.pathname)
       }
     />
-    <h1>
-      <Link to='/' className='title-link'>
+    <h1 className='title'>
+      <Link to='/'>
         <span style={{ fontWeight: '200' }}>portfolio.</span>mcardle.io
       </Link>
-      <span style={{ fontWeight: '200' }}> / </span>{prettyPath(location.pathname)}
+      {prettyPath(location.pathname).split(' / ').map((path, index) =>
+        <span key={path}>
+          <span style={{ fontWeight: '200' }}> / </span>
+          {index == 0 ?
+            <Link to={`/${path}`}>{path}</Link>
+          :
+            path
+          }
+        </span>
+      )}
     </h1>
     {children()}
   </div>
