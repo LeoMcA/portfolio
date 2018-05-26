@@ -8,6 +8,7 @@ exports.onCreateNode = ({ node, getNode, boundActionCreators }) => {
   const { createNodeField } = boundActionCreators
   if (node.internal.type === 'MarkdownRemark') {
     const slug = createFilePath({ node, getNode, basePath: 'projects' })
+    const collection = getNode(node.parent).relativeDirectory.split('/').pop()
     createNodeField({
       node,
       name: 'slug',
@@ -18,6 +19,11 @@ exports.onCreateNode = ({ node, getNode, boundActionCreators }) => {
       name: 'title',
       value: title(slug),
     })
+    createNodeField({
+      node,
+      name: 'collection',
+      value: collection,
+    })
   }
 }
 
@@ -26,7 +32,7 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
   return new Promise((resolve, reject) => {
     graphql(`
       {
-        allMarkdownRemark {
+        allMarkdownRemark(filter: { fields: { collection: { eq: "projects" } } }) {
           edges {
             node {
               frontmatter {

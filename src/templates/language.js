@@ -2,9 +2,13 @@ import React from 'react'
 import Link from 'gatsby-link'
 
 export default ({ data }) => {
-  const projects = data.allMarkdownRemark.edges
+  const projects = data.projects.edges
+  const description = data.description
   return (
     <div className='content'>
+      {description ?
+        <div dangerouslySetInnerHTML={{ __html: description.html }} />
+      : null}
       <ul>
         {projects.map(({ node }) =>
           <li key={node.id}>
@@ -20,7 +24,7 @@ export default ({ data }) => {
 
 export const query = graphql`
   query LanguageQuery($lang: String!) {
-    allMarkdownRemark(filter: { frontmatter: { languages: { eq: $lang } } }) {
+    projects: allMarkdownRemark(filter: { frontmatter: { languages: { eq: $lang } } }) {
       edges {
         node {
           id
@@ -33,6 +37,9 @@ export const query = graphql`
           }
         }
       }
+    },
+    description: markdownRemark(fields: { title: { eq: $lang }, collection: { eq: "languages" } }) {
+      html
     }
   }
 `
