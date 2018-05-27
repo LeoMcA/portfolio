@@ -32,51 +32,78 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
   return new Promise((resolve, reject) => {
     graphql(`
       {
-        allMarkdownRemark(filter: { fields: { collection: { eq: "projects" } } }) {
-          edges {
-            node {
-              frontmatter {
-                languages
-              }
-              fields {
-                slug
-              }
-            }
+        file (relativePath: { eq: "settings/tag-fields.yml" }) {
+          childSettingsYaml {
+            tag_fields
           }
         }
       }
     `).then(result => {
-      var languages = new Set()
-      result.data.allMarkdownRemark.edges.forEach(({ node }) => {
-        if (node.frontmatter.languages) {
-          node.frontmatter.languages.forEach(lang => languages.add(lang))
+      var tags = {}
+      result.data.file.childSettingsYaml.tag_fields.forEach(tag_field => {
+        tags[tag_field] = new Set()
+      })
+      var tag_fields = Object.keys(tags)
+      graphql(`
+        {
+          allMarkdownRemark(filter: { fields: { collection: { eq: "projects" } } }) {
+            edges {
+              node {
+                frontmatter {
+                  ${tag_fields}
+                }
+                fields {
+                  slug
+                }
+              }
+            }
+          }
         }
-        createPage({
-          path: node.fields.slug,
-          component: path.resolve('./src/templates/project.js'),
-          context: {
-            // Data passed to context is available in page queries as GraphQL variables.
-            slug: node.fields.slug,
-          },
+      `).then(result => {
+        result.data.allMarkdownRemark.edges.forEach(({ node }) => {
+          for (var tag_field in tags) {
+            if (node.frontmatter[tag_field]) {
+              if (Array.isArray(node.frontmatter[tag_field])) {
+                node.frontmatter[tag_field].forEach(tag => tags[tag_field].add(tag))
+              } else {
+                tags[tag_field].add(node.frontmatter[tag_field])
+              }
+            }
+          }
+          createPage({
+            path: node.fields.slug,
+            component: path.resolve('./src/templates/project.js'),
+            context: {
+              // Data passed to context is available in page queries as GraphQL variables.
+              slug: node.fields.slug,
+            },
+          })
         })
+        for (var tag_field in tags) {
+          tags[tag_field].forEach(tag => {
+            tagFilter = {}
+            tagFilter[tag_field] = { eq: tag }
+            createPage({
+              path: `/${tag_field}/${tag}`,
+              component: path.resolve('./src/templates/tag.js'),
+              context: {
+                tag_field: tag_field,
+                tag: tag,
+                tagFilter: { frontmatter: tagFilter }
+              },
+            })
+          })
+          createPage({
+            path: `/${tag_field}`,
+            component: path.resolve('./src/templates/tag-field.js'),
+            context: {
+              tag_field: tag_field,
+              tags: [...tags[tag_field]].sort((a, b) => a.toLowerCase() < b.toLowerCase() ? -1 : 1),
+            },
+          })
+        }
+        resolve()
       })
-      languages.forEach(lang => {
-        createPage({
-          path: `/languages/${lang}`,
-          component: path.resolve('./src/templates/language.js'),
-          context: {
-            lang: lang
-          },
-        })
-      })
-      createPage({
-        path: `/languages`,
-        component: path.resolve('./src/templates/languages.js'),
-        context: {
-          languages: [...languages]
-        },
-      })
-      resolve()
     })
   })
 }

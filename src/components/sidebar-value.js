@@ -1,27 +1,17 @@
 import React from 'react'
 import Link from 'gatsby-link'
 
-export default ({ label, value }) => {
+export default ({ label, value, tag_fields }) => {
   switch (true) {
-    case /^(demo|source)$/.test(label):
+    case ['demo', 'source'].includes(label):
       return (
         <a href={value}>
           {value.replace(/https?:\/\/(github.com\/)?/, '')}
         </a>
       )
-    case Array.isArray(value):
+    case tag_fields.includes(label):
       return (
-        <ul style={{ display:'table-cell' }}>
-          {value.map(item =>
-            <li key={item}>
-            {/^(languages)$/.test(label) ?
-              <Link to={`/languages/${item}`}>{item}</Link>
-            :
-              item
-            }
-            </li>
-          )}
-        </ul>
+        <Link to={`/${label}/${value}`}>{value}</Link>
       )
     default:
       return (

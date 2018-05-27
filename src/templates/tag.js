@@ -23,8 +23,8 @@ export default ({ data }) => {
 }
 
 export const query = graphql`
-  query LanguageQuery($lang: String!) {
-    projects: allMarkdownRemark(filter: { frontmatter: { languages: { eq: $lang } } }) {
+  query TagQuery($tag_field: String!, $tag: String!, $tagFilter: filterMarkdownRemark!) {
+    projects: allMarkdownRemark(filter: $tagFilter) {
       edges {
         node {
           id
@@ -38,7 +38,7 @@ export const query = graphql`
         }
       }
     },
-    description: markdownRemark(fields: { title: { eq: $lang }, collection: { eq: "languages" } }) {
+    description: markdownRemark(fields: { title: { eq: $tag }, collection: { eq: $tag_field } }) {
       html
     }
   }

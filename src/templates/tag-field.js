@@ -2,14 +2,15 @@ import React from 'react'
 import Link from 'gatsby-link'
 
 export default ({ pathContext }) => {
-  const languages = pathContext.languages
+  const tag_field = pathContext.tag_field
+  const tags = pathContext.tags
   return (
     <div className='content'>
       <ul>
-        {languages.map(lang =>
-          <li key={lang}>
-            <Link to={`/languages/${lang}`}>
-              {lang}
+        {tags.map(tag =>
+          <li key={tag}>
+            <Link to={`/${tag_field}/${tag}`}>
+              {tag}
             </Link>
           </li>
         )}

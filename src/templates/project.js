@@ -4,7 +4,8 @@ import Header from '../components/header'
 import Sidebar from '../components/sidebar'
 
 export default ({ data }) => {
-  const project = data.markdownRemark
+  const project = data.project
+  const tag_fields = data.tag_fields.childSettingsYaml.tag_fields
   const excluded_from_sidebar = [
     'description',
     'video',
@@ -16,7 +17,7 @@ export default ({ data }) => {
   return (
     <div className='project'>
       <Header project={project} />
-      <Sidebar sidebar_data={sidebar_data} />
+      <Sidebar sidebar_data={sidebar_data} tag_fields={tag_fields} />
       <div className='content' dangerouslySetInnerHTML={{ __html: project.html }} />
     </div>
   )
@@ -24,7 +25,7 @@ export default ({ data }) => {
 
 export const query = graphql`
   query ProjectQuery($slug: String!) {
-    markdownRemark(fields: { slug: { eq: $slug } }) {
+    project: markdownRemark(fields: { slug: { eq: $slug } }) {
       html
       transparentPng
       frontmatter {
@@ -52,6 +53,11 @@ export const query = graphql`
         type
         license
         source
+      }
+    },
+    tag_fields: file (relativePath: { eq: "settings/tag-fields.yml" }) {
+      childSettingsYaml {
+        tag_fields
       }
     }
   }

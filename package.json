@@ -12,6 +12,7 @@
     "gatsby-source-filesystem": "^1.5.36",
     "gatsby-transformer-remark": "^1.7.41",
     "gatsby-transformer-sharp": "^1.6.24",
+    "gatsby-transformer-yaml": "^1.5.17",
     "normalize.css": "^8.0.0",
     "react-helmet": "^5.2.0",
     "typeface-source-code-pro": "0.0.54"
