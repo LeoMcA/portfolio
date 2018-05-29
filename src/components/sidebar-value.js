@@ -1,9 +1,9 @@
 import React from 'react'
 import Link from 'gatsby-link'
 
-export default ({ label, value, tag_fields }) => {
+export default ({ label, value, tag_fields, link_fields }) => {
   switch (true) {
-    case ['demo', 'source'].includes(label):
+    case link_fields.includes(label):
       return (
         <a href={value}>
           {value.replace(/https?:\/\/(github.com\/)?/, '')}

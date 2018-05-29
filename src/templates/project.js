@@ -3,9 +3,10 @@ import React from 'react'
 import Header from '../components/header'
 import Sidebar from '../components/sidebar'
 
-export default ({ data }) => {
+export default ({ data, pathContext }) => {
   const project = data.project
-  const tag_fields = data.tag_fields.childSettingsYaml.tag_fields
+  const tag_fields = pathContext.tag_fields
+  const link_fields = pathContext.link_fields
   const excluded_from_sidebar = [
     'description',
     'video',
@@ -17,7 +18,7 @@ export default ({ data }) => {
   return (
     <div className='project'>
       <Header project={project} />
-      <Sidebar sidebar_data={sidebar_data} tag_fields={tag_fields} />
+      <Sidebar sidebar_data={sidebar_data} tag_fields={tag_fields} link_fields={link_fields} />
       <div className='content' dangerouslySetInnerHTML={{ __html: project.html }} />
     </div>
   )
@@ -47,17 +48,7 @@ export const query = graphql`
           }
         }
         ratio
-        demo
-        languages
-        frameworks
-        type
-        license
-        source
-      }
-    },
-    tag_fields: file (relativePath: { eq: "settings/tag-fields.yml" }) {
-      childSettingsYaml {
-        tag_fields
+        ...sidebarFields
       }
     }
   }

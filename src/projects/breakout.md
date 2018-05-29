@@ -15,7 +15,7 @@ languages:
 frameworks:
  - "arduino"
  - "ncurses"
-type: "uni"
+category: "university"
 license: "mit"
 source: "https://github.com/LeoMcA/breakout"
 ---

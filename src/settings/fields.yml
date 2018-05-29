@@ -1,0 +1,7 @@
+link_fields:
+  - demo
+  - source
+tag_fields:
+  - languages
+  - frameworks
+  - category

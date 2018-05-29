@@ -32,18 +32,20 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
   return new Promise((resolve, reject) => {
     graphql(`
       {
-        file (relativePath: { eq: "settings/tag-fields.yml" }) {
+        file (relativePath: { eq: "settings/fields.yml" }) {
           childSettingsYaml {
+            link_fields
             tag_fields
           }
         }
       }
     `).then(result => {
+      const link_fields = result.data.file.childSettingsYaml.link_fields
+      const tag_fields = result.data.file.childSettingsYaml.tag_fields
       var tags = {}
-      result.data.file.childSettingsYaml.tag_fields.forEach(tag_field => {
+      tag_fields.forEach(tag_field => {
         tags[tag_field] = new Set()
       })
-      var tag_fields = Object.keys(tags)
       graphql(`
         {
           allMarkdownRemark(filter: { fields: { collection: { eq: "projects" } } }) {
@@ -74,8 +76,9 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
             path: node.fields.slug,
             component: path.resolve('./src/templates/project.js'),
             context: {
-              // Data passed to context is available in page queries as GraphQL variables.
               slug: node.fields.slug,
+              tag_fields: tag_fields,
+              link_fields: link_fields,
             },
           })
         })
