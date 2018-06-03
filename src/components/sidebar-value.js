@@ -15,7 +15,7 @@ export default ({ label, value, tag_fields, link_fields }) => {
       )
     default:
       return (
-        <span style={{ display:'table-cell' }} >{value}</span>
+        <span>{value}</span>
       )
   }
 }

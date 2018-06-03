@@ -7,9 +7,9 @@ export default ({ sidebar_data, tag_fields, link_fields }) => (
     <div style={{ display: 'table' }}>
       {Object.keys(sidebar_data).map(k =>
         <div style={{ display:'table-row' }} key={k}>
-          <span style={{ display:'table-cell', paddingRight: '1ch' }} className='label'>{k}</span>
+          <span className='label'>{k}</span>
           {Array.isArray(sidebar_data[k]) ?
-            <ul style={{ display:'table-cell' }}>
+            <ul className='value'>
               {sidebar_data[k].map(item =>
                 <li key={item}>
                   <Value label={k} value={item} tag_fields={tag_fields} link_fields={link_fields} />
@@ -17,7 +17,9 @@ export default ({ sidebar_data, tag_fields, link_fields }) => (
               )}
             </ul>
           :
-            <Value label={k} value={sidebar_data[k]} tag_fields={tag_fields} link_fields={link_fields} />
+            <span className='value'>
+              <Value label={k} value={sidebar_data[k]} tag_fields={tag_fields} link_fields={link_fields} />
+            </span>
           }
         </div>
       )}

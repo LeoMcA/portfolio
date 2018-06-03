@@ -70,20 +70,19 @@ a, .title a:hover {
 .sidebar .label {
   font-weight: 200;
   text-align: right;
+  display: table-cell;
+  padding-right: 1ch;
+}
+
+.sidebar .value {
+  word-break: break-all;
+  display: table-cell;
 }
 
 .sidebar ul {
   margin: 0;
   padding: 0;
   list-style: none;
-}
-
-.sidebar li {
-  display: inline;
-}
-
-.sidebar li:not(:last-child)::after {
-  content: ', ';
 }
 
 @media only screen and (max-width: 992px) {
