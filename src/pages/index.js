@@ -20,7 +20,10 @@ export default ({ data }) => {
 
 export const query = graphql`
   query IndexQuery {
-    allMarkdownRemark(filter: { fields: { collection: { eq: "projects" } } }) {
+    allMarkdownRemark(
+      filter: { fields: { collection: { eq: "projects" } } },
+      sort: { fields: [fields___title] }
+    ) {
       edges {
         node {
           id

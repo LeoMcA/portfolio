@@ -24,7 +24,10 @@ export default ({ data }) => {
 
 export const query = graphql`
   query TagQuery($tag_field: String!, $tag: String!, $tagFilter: filterMarkdownRemark!) {
-    projects: allMarkdownRemark(filter: $tagFilter) {
+    projects: allMarkdownRemark(
+        filter: $tagFilter,
+        sort: { fields: [fields___title] }
+      ) {
       edges {
         node {
           id
