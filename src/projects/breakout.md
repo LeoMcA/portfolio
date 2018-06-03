@@ -1,15 +1,16 @@
 ---
 description: "a breakout clone created in c, using an arduino as a controller and ncurses to draw the game on screen"
-video:
-  source:
-    -
-      src: "./assets/breakout.webm"
-      type: "video/webm; codecs=vp9"
-    -
-      src: "./assets/breakout.mp4"
-      type: "video/mp4"
-  poster: "./assets/breakout.png"
-ratio: "16:9"
+header:
+  video:
+    source:
+      -
+        src: "./assets/breakout.webm"
+        type: "video/webm; codecs=vp9"
+      -
+        src: "./assets/breakout.mp4"
+        type: "video/mp4"
+    poster: "./assets/breakout.png"
+  ratio: "16:9"
 languages:
  - "c"
 frameworks:

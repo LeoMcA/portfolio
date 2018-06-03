@@ -1,5 +1,9 @@
 ---
 description: "Simple timekeeping app to be used on a whiteboard during debates"
+header:
+  image:
+    svg_preview: true
+    src: "./assets/debating-timer.png"
 demo: "http://debti.me"
 languages:
  - "javascript"

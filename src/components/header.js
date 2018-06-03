@@ -5,6 +5,7 @@ import RatioBox from './ratio-box.js'
 
 export default ({ project }) => {
   const frontmatter = project.frontmatter
+  const header = frontmatter.header
   return (
     <div className='header'>
       <div style={{
@@ -13,10 +14,16 @@ export default ({ project }) => {
       }}>
         {frontmatter.description}
       </div>
-      {frontmatter.video ?
-        <RatioBox ratio={frontmatter.ratio ? frontmatter.ratio : "16:9"}>
-          {frontmatter.video.poster ?
-            <Img sizes={frontmatter.video.poster.childImageSharp.sizes} />
+      {header.image ?
+        header.image.svg_preview ?
+          <Img style={{margin: '1.7em 0'}} sizes={header.image.src.childImageSharp.sizes_svg} />
+        :
+          <Img style={{margin: '1.7em 0'}} sizes={header.image.src.childImageSharp.sizes} />
+      : null}
+      {header.video ?
+        <RatioBox ratio={header.ratio ? header.ratio : "16:9"}>
+          {header.video.poster ?
+            <Img sizes={header.video.poster.childImageSharp.sizes} />
           : null}
           <video
             controls
@@ -33,7 +40,7 @@ export default ({ project }) => {
               height: '100%',
             }}
           >
-            {frontmatter.video.source.map(source =>
+            {header.video.source.map(source =>
               <source key={source.src.id} src={source.src.publicURL} type={source.type} />
             )}
           </video>

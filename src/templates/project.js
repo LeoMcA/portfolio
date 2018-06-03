@@ -9,8 +9,7 @@ export default ({ data, pathContext }) => {
   const link_fields = pathContext.link_fields
   const excluded_from_sidebar = [
     'description',
-    'video',
-    'ratio'
+    'header',
   ]
   const sidebar_data = Object.keys(project.frontmatter)
     .filter(k => project.frontmatter[k] && !excluded_from_sidebar.includes(k))
@@ -31,23 +30,38 @@ export const query = graphql`
       transparentPng
       frontmatter {
         description
-        video {
-          source {
-            src {
-              id
-              publicURL
+        header {
+          ratio
+          video {
+            source {
+              src {
+                id
+                publicURL
+              }
+              type
             }
-            type
+            poster {
+              childImageSharp {
+                sizes {
+                  ...GatsbyImageSharpSizes
+                }
+              }
+            }
           }
-          poster {
-            childImageSharp {
-              sizes {
-                ...GatsbyImageSharpSizes
+          image {
+            svg_preview
+            src {
+              childImageSharp {
+                sizes: sizes(maxWidth: 1170) {
+                  ...GatsbyImageSharpSizes
+                }
+                sizes_svg: sizes(maxWidth: 1170) {
+                  ...GatsbyImageSharpSizes_tracedSVG
+                }
               }
             }
           }
         }
-        ratio
         ...sidebarFields
       }
     }
