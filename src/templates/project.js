@@ -42,7 +42,7 @@ export const query = graphql`
             }
             poster {
               childImageSharp {
-                sizes {
+                sizes(maxWidth: 1170, quality: 90) {
                   ...GatsbyImageSharpSizes
                 }
               }
@@ -52,10 +52,10 @@ export const query = graphql`
             svg_preview
             src {
               childImageSharp {
-                sizes: sizes(maxWidth: 1170) {
+                sizes: sizes(maxWidth: 1170, quality: 90) {
                   ...GatsbyImageSharpSizes
                 }
-                sizes_svg: sizes(maxWidth: 1170) {
+                sizes_svg: sizes(maxWidth: 1170, quality: 90) {
                   ...GatsbyImageSharpSizes_tracedSVG
                 }
               }

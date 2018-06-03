@@ -9,7 +9,7 @@ header:
       -
         src: "./assets/breakout.mp4"
         type: "video/mp4"
-    poster: "./assets/breakout.png"
+    poster: "./assets/breakout.jpg"
   ratio: "16:9"
 languages:
  - "c"
