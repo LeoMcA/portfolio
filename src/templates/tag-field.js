@@ -1,20 +1,23 @@
 import React from 'react'
-import Link from 'gatsby-link'
+import { Link } from 'gatsby'
+import Layout from '../components/layout'
 
-export default ({ pathContext }) => {
-  const tag_field = pathContext.tag_field
-  const tags = pathContext.tags
+export default ({ pageContext, location }) => {
+  const tag_field = pageContext.tag_field
+  const tags = pageContext.tags
   return (
-    <div className='content'>
-      <ul>
-        {tags.map(tag =>
-          <li key={tag}>
-            <Link to={`/${tag_field}/${tag}`}>
-              {tag}
-            </Link>
-          </li>
-        )}
-      </ul>
-    </div>
+    <Layout location={location}>
+      <div className='content'>
+        <ul>
+          {tags.map(tag =>
+            <li key={tag}>
+              <Link to={`/${tag_field}/${tag}`}>
+                {tag}
+              </Link>
+            </li>
+          )}
+        </ul>
+      </div>
+    </Layout>
   )
 }

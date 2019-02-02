@@ -1,29 +1,32 @@
 import React from 'react'
-import Link from 'gatsby-link'
+import { graphql, Link } from 'gatsby'
+import Layout from '../components/layout'
 
-export default ({ data }) => {
+export default ({ data, location }) => {
   const projects = data.projects.edges
   const description = data.description
   return (
-    <div className='content'>
-      {description ?
-        <div dangerouslySetInnerHTML={{ __html: description.html }} />
-      : null}
-      <ul>
-        {projects.map(({ node }) =>
-          <li key={node.id}>
-            <Link to={node.fields.slug}>
-              {node.fields.title}
-            </Link>
-          </li>
-        )}
-      </ul>
-    </div>
+    <Layout location={location}>
+      <div className='content'>
+        {description ?
+          <div dangerouslySetInnerHTML={{ __html: description.html }} />
+        : null}
+        <ul>
+          {projects.map(({ node }) =>
+            <li key={node.id}>
+              <Link to={node.fields.slug}>
+                {node.fields.title}
+              </Link>
+            </li>
+          )}
+        </ul>
+      </div>
+    </Layout>
   )
 }
 
 export const query = graphql`
-  query TagQuery($tag_field: String!, $tag: String!, $tagFilter: filterMarkdownRemark!) {
+  query($tag_field: String!, $tag: String!, $tagFilter: filterMarkdownRemark!) {
     projects: allMarkdownRemark(
         filter: $tagFilter,
         sort: { fields: [fields___title] }

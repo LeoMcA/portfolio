@@ -16,14 +16,14 @@ export default ({ project }) => {
       </div>
       {header.image ?
         header.image.svg_preview ?
-          <Img style={{margin: '1.7em 0'}} sizes={header.image.src.childImageSharp.sizes_svg} />
+          <Img style={{margin: '1.7em 0'}} fluid={header.image.src.childImageSharp.fluid_svg} />
         :
-          <Img style={{margin: '1.7em 0'}} sizes={header.image.src.childImageSharp.sizes} />
+          <Img style={{margin: '1.7em 0'}} fluid={header.image.src.childImageSharp.fluid} />
       : null}
       {header.video ?
         <RatioBox ratio={header.ratio ? header.ratio : "16:9"}>
           {header.video.poster ?
-            <Img sizes={header.video.poster.childImageSharp.sizes} />
+            <Img fluid={header.video.poster.childImageSharp.fluid} />
           : null}
           <video
             controls

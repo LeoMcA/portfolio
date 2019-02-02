@@ -4,8 +4,8 @@ const { title } = require('./src/util/title-from-slug')
 const { GraphQLString } = require('graphql')
 const sharp = require('sharp')
 
-exports.onCreateNode = ({ node, getNode, boundActionCreators }) => {
-  const { createNodeField } = boundActionCreators
+exports.onCreateNode = ({ node, getNode, actions }) => {
+  const { createNodeField } = actions
   if (node.internal.type === 'MarkdownRemark') {
     const slug = createFilePath({ node, getNode, basePath: 'projects' })
     const collection = getNode(node.parent).relativeDirectory.split('/').pop()
@@ -27,8 +27,8 @@ exports.onCreateNode = ({ node, getNode, boundActionCreators }) => {
   }
 }
 
-exports.createPages = ({ graphql, boundActionCreators }) => {
-  const { createPage } = boundActionCreators
+exports.createPages = ({ graphql, actions }) => {
+  const { createPage } = actions
   return new Promise((resolve, reject) => {
     graphql(`
       {

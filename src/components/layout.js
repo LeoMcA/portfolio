@@ -1,12 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
-import Link from 'gatsby-link'
+import { Link } from 'gatsby'
 
 import { prettyPath } from '../util/title-from-slug'
 
 import 'typeface-source-code-pro'
-import './index.css'
+import './styles/layout.css'
 
 const Layout = ({ children, location }) => (
   <div style={{
@@ -27,7 +27,7 @@ const Layout = ({ children, location }) => (
       {prettyPath(location.pathname).split(' / ').map((path, index) =>
         <span key={path}>
           <span style={{ fontWeight: '200' }}> / </span>
-          {index == 0 ?
+          {index === 0 ?
             <Link to={`/${path}`}>{path}</Link>
           :
             path
@@ -35,7 +35,7 @@ const Layout = ({ children, location }) => (
         </span>
       )}
     </h1>
-    {children()}
+    {children}
   </div>
 )
 
