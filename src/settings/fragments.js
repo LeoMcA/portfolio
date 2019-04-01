@@ -1,7 +1,7 @@
 import { graphql } from 'gatsby'
 
 export const sidebarFieldsFragment = graphql`
-  fragment sidebarFields on frontmatter_3 {
+  fragment sidebarFields on MarkdownRemarkFrontmatter {
     demo
     languages
     frameworks

@@ -26,7 +26,7 @@ export default ({ data, location }) => {
 }
 
 export const query = graphql`
-  query($tag_field: String!, $tag: String!, $tagFilter: filterMarkdownRemark!) {
+  query($tag_field: String!, $tag: String!, $tagFilter: MarkdownRemarkFilterInput!) {
     projects: allMarkdownRemark(
         filter: $tagFilter,
         sort: { fields: [fields___title] }
