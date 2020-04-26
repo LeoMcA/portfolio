@@ -4,18 +4,34 @@ import Layout from '../components/layout'
 
 export default ({ data, location }) => {
   const projects = data.allMarkdownRemark.edges
+  const languages = {}
+  projects.forEach(({ node: p }) => {
+    const ls = p.frontmatter.languages
+    ls.forEach(l => {
+      if (languages[l]) {
+        languages[l].push(p)
+      } else {
+        languages[l] = [p]
+      }
+    })
+  })
   return (
     <Layout location={location}>
       <div className='content'>
-        <ul>
-          {projects.map(({ node }) =>
-            <li key={node.id}>
-              <Link to={node.fields.slug}>
-                {node.fields.title}
-              </Link>
-            </li>
-          )}
-        </ul>
+        {Object.entries(languages).map(([lang, projects]) =>
+          <div>
+            <h1>{lang}</h1>
+            <ul>
+              {projects.map((p) =>
+                <li key={p.id}>
+                  <Link to={p.fields.slug}>
+                    {p.fields.title}
+                  </Link>
+                </li>
+              )}
+            </ul>
+          </div>
+        )}
       </div>
     </Layout>
   )
@@ -32,6 +48,7 @@ export const query = graphql`
           id
           frontmatter {
             description
+            languages
           }
           fields {
             slug
