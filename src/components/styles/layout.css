@@ -45,10 +45,8 @@ a, .title a:hover {
 
 .project {
   display: grid;
-  grid-auto-flow: column;
-  grid-template-rows: max-content max-content;
   /* https://baymard.com/blog/line-length-readability */
-  grid-template-columns: minmax(50ch, 75ch) auto;
+  grid-template-columns: minmax(50ch, 75ch) minmax(20ch, auto);
   grid-column-gap: 1ch;
   column-gap: 1ch;
 }
@@ -86,6 +84,10 @@ a, .title a:hover {
   list-style: none;
 }
 
+.content {
+  grid-column: 1;
+}
+
 @media only screen and (max-width: 992px) {
   body {
     font-size: 16px;
@@ -95,10 +97,6 @@ a, .title a:hover {
 @media only screen and (max-width: 768px) {
   .project {
     grid-template-columns: auto;
-  }
-
-  .header {
-    grid-column: 1;
   }
 
   .sidebar {
