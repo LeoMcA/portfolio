@@ -9,12 +9,7 @@ import 'typeface-source-code-pro'
 import './styles/layout.css'
 
 const Layout = ({ children, location }) => (
-  <div style={{
-    padding: '0 2ch',
-    display: 'grid',
-    maxWidth: '90ch',
-    margin: '0 auto',
-  }}>
+  <>
     <Helmet
       title={
         'portfolio.mcardle.io / ' + prettyPath(location.pathname)
@@ -36,7 +31,7 @@ const Layout = ({ children, location }) => (
       )}
     </h1>
     {children}
-  </div>
+  </>
 )
 
 Layout.propTypes = {
